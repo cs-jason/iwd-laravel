@@ -1,0 +1,13 @@
+website login
+username: bunnylearn
+password: Admin!123
+
+database login
+username: bunnylearning
+password: Admin!123
+
+database
+name: id21064925_bunnylearning
+user: id21064925_bunnylearning
+pass: Admin!123
+host: localhost
