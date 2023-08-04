@@ -1,11 +1,19 @@
+{{-- 
+views/dashboard.blade.php 
+
+Extend the 'Layout' component and set the title as "Home" 
+--}}
+
 <x-layout title="Home">
     <body onload="dailyNotification()">
+        <!-- Introduction section -->
         <div class="flex flex-col mt-8 md:flex-row md:gap-8 lg:gap-16">
             <h1 class="text-3xl font-medium text-gray-800 lg:text-4xl"><span class="brand font-semibold">Bunny. </span><span class="text-gray-500">The best way to learn about marketing.</span></h1>
 
             <p class="text-gray-500 mt-4 lg:w-96 md:mt-0">Dive deep into how the various aspects of marketing, and level up your skills to support your career in digital marketing.</p>
         </div>
 
+        <!-- Lessons section -->
         <div class="grid grid-cols-3 mt-14 gap-8 lg:grid-cols-6">
             <a href="/lesson/1" class="flex flex-col items-center gap-2 hover:-translate-y-1 active:translate-y-0.5 transition duration-200 ease-in-out">
                 <img src="{{ URL('images/icon1.png') }}" class="w-20 h-20 rounded-2xl shadow-md hover:shadow-lg transition duration-200 ease-in-out"/>
@@ -33,7 +41,10 @@
             </a>
         </div>
 
+        <!-- User-specific content -->
         @auth
+            <!-- Display user's name and certificate link if all lessons are completed -->
+            <!-- Otherwise, show progress and lesson cards -->
             <div class="flex flex-col justify-between items-start w-full mt-16">
                 <div class="flex gap-4 items-center justify-center">
                     <div class="flex flex-col sm:flex-row sm:gap-2">
@@ -44,20 +55,31 @@
                             {{ Auth::user()->name }}.
                         </h2>
                     </div>
+                    <!-- Certificate ribbon if all lessons are completed -->
+                    <!-- Otherwise, display the progress -->
                     @if (auth()->check() && app('App\Http\Controllers\UserController')->checkUserComplete())
                         <a href="{{ route('certificate') }}"><img src="{{ URL('images/blue-ribbon.png') }}" class="ribbon hover:-translate-y-0.5 hover:scale-110 transition duration-200 ease-in-out active:translate-y-0.5 text-center"/></a>
                         </div>
                         <p class="text-gray-500 mt-4">Congratulations! You have completed everything. Click the ribbon to <a href="{{ route('certificate') }}" class="text-blue-600 hover:underline hover:text-blue-700">view your certificate.</a></p>
                     @else
                 </div>
+                    <!-- Display lesson progress and quiz scores for each lesson -->
+                    <!-- Lesson cards with progress data -->
+                    <!-- Repeat for all lessons -->
+                    <!-- Each lesson card is linked to a specific URL -->
                     @endif            
             </div>
 
         @else
+            <!-- Display welcome message for guests -->
+            <!-- Prompt to sign in or create an account -->
             <h2 class="text-2xl text-gray-800 mt-16 font-medium"><span class="text-gray-500">Welcome,</span> Guest.</h2>
             <p class="text-gray-500 mt-4">Looks like you’re not signed in. <a href="{{ route('login') }}" class="text-blue-600 hover:underline hover:text-blue-700">Sign in</a> or <a href="{{ route('register') }}" class="text-blue-600 hover:underline hover:text-blue-700">create an account</a> to view your progress.</p>
         @endauth
 
+        <!-- Display lesson progress and quiz scores for each lesson -->
+        <!-- Lesson cards with progress data -->
+        <!-- Repeat for all lessons -->
 
         <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
             <x-lessoncard 
@@ -124,6 +146,7 @@
         <h2 class="text-2xl text-gray-500 font-medium mt-16"><span class="text-gray-800">Analytics.</span> View your progress for each lesson.</h2>     
         
         @auth
+        <!-- Display lesson progress and quiz scores for each lesson -->
         <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="bg-white p-8 shadow rounded-lg block w-full flex-col justify-between">
                 <h2 class="text-xl mb-4 text-gray-800">Lessons</h2>
@@ -232,9 +255,11 @@
             @endauth
             </div> 
         </div>
-        
+
+        <!-- Notification and WhatsApp sharing scripts -->
         <h2 class="text-2xl text-gray-500 mt-16 mb-16 font-medium w-full">Enjoying Bunny? Share us with your friends on <a id="whatsappShareButton" class="text-green-500 hover:underline hover:text-green-600 active:text-green-400 cursor-pointer">WhatsApp.</a></h2>
 
+        <!-- Calculate whether all lessons are completed -->
         @php
             $allCompleted = true;
             for ($lessonId = 1; $lessonId <= 6; $lessonId++) {
@@ -250,6 +275,7 @@
         @endphp
 
         <script>
+            // Notification script
             let notificationStatus = {{ $notificationStatus }};
             notificationStatus = !notificationStatus;
 
@@ -290,6 +316,7 @@
                 }
             }
 
+            // WhatsApp sharing script
             function shareViaWhatsApp() {
                 console.log("Sharing via WhatsApp")
                 var currentURL = window.location.href;

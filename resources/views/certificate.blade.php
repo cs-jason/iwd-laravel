@@ -1,9 +1,18 @@
+{{-- 
+views/certificate.blade.php 
+
+Extend the 'Layout' component and set the title as "Certificate"
+--}}
+
 <x-layout title="Certificate">
     @auth
     <body>
+        <!-- Link to go back to the homepage -->
         <a href="/" class="text-gray-500 hover:text-gray-700 focus:text-gray-400">Back</a>
+        <!-- Container for the certificate content -->
         <div class="-ml-6 -mr-6 mt-4 md:ml-0 md:mr-0 mb-16">
             <div class="mx-auto bg-white p-8 mt-4 rounded-lg shadow-lg">
+                <!-- Certificate design with user information -->
                 <div class="border flex flex-col items-center justify-center p-16 text-center">
                     <h1 class="cert-title text-5xl mb-6 text-gray-700">Certificate of Completion</h1>
                     <img src="{{ URL('images/blue-ribbon.png') }}" class="w-32 h-32 mb-6"/>
@@ -18,11 +27,13 @@
                 </div>
             </div>
             <div class="px-6">
+                <!-- Section to share certificate via WhatsApp -->
                 <h2 class="text-xl text-gray-500 mt-16 mb-16 font-medium w-full text-center">Enjoyed learning with Bunny? <br>Spread the knowledge with your friends on <a id="whatsappShareButton" class="text-green-500 hover:underline hover:text-green-600 active:text-green-400 cursor-pointer">WhatsApp.</a></h2>
             </div>
         </div>
 
         <script>
+            // Function to share the certificate link via WhatsApp
             function shareViaWhatsApp() {
                 console.log("Sharing via WhatsApp")
                 var currentURL = window.location.href;
@@ -30,6 +41,8 @@
                 var whatsappURL = "https://api.whatsapp.com/send?text=" + encodeURIComponent(customMessage);
                 window.open(whatsappURL, "_blank");
             }
+
+            // Add a click event listener to the WhatsApp share button
             document.getElementById("whatsappShareButton").addEventListener("click", function () {
                 shareViaWhatsApp();
             });
@@ -37,12 +50,14 @@
     </body>
     @else
         @php
+            // If the user is not authenticated, redirect to the homepage
             return redirect('/');
         @endphp
     @endauth
 </x-layout>
 
 <style>
+    /* Certificate border styling */
     .border {
         box-shadow:
         inset #009688 0 0 0 5px, 
@@ -55,7 +70,7 @@
         inset #bfecf7 0 0 0 22px;
         border-radius: 0.5rem;
     }
-
+    /* Font styling for certificate elements */
     .cert-title {
         font-family: 'UnifrakturCook', cursive;
     }
