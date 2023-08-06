@@ -12,7 +12,7 @@
             
             {{-- Profile section --}}
             <div class="flex flex-col h-full -ml-6 -mr-6 mt-4 md:ml-0 md:mr-0 mb-16">
-                <div class="bg-white shadow-lg rounded-3xl p-6 pt-8 pb-8 text-left md:p-16 md:pt-12 md:pb-12 w-full ">
+           2     <div class="bg-white shadow-lg rounded-3xl p-6 pt-8 pb-8 text-left md:p-16 md:pt-12 md:pb-12 w-full ">
                     <div class="flex flex-col justify-between">
                         <div class="flex gap-6 mb-12">
                             {{-- User profile image --}}

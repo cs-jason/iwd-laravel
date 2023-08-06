@@ -23,21 +23,11 @@ class LessonController extends Controller
 
             $request->session()->flash('success', 'You have completed this lesson');
 
-            return redirect()->back(); // Redirect back to the referring page (Lesson 1 in this case)
+            return redirect()->back();
         } else {
             return response()->json(['message' => 'Please log in to complete the lesson'], 401);
         }
     }
-
-    // public function showLesson1()
-    // {
-    //     // You can pass any required data to the lesson view, such as the progress for Lesson 1
-    //     // For demonstration purposes, I'll pass a dummy progress percentage.
-    //     // $progress1 = 50; // Replace this with the actual progress value fetched from the database.
-
-    //     // return view('lesson1', compact('progress1'));
-    //     return view('lesson1');
-    // }
     
     public function showLesson1()
     {
