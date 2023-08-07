@@ -69,8 +69,13 @@
                         <p class="text-2xl font-semibold text-gray-800 brand">Bunny</p>
                     </a>
                     <!-- Display copyright information in the footer -->
-                    <p class="text-gray-500">© 2023 Bunny. All rights reserved<a href="/admin-complete">.</a></p>
-
+                    @auth
+                        <!-- Secret button for logged in users (admin) to complete all progress -->
+                        <p class="text-gray-500">© 2023 Bunny. All rights reserved<a href="/admin-complete">.</a></p>
+                    @else
+                        <!-- Display the default footer for non-authenticated users -->
+                        <p class="text-gray-500">© 2023 Bunny. All rights reserved.</p>
+                    @endauth    
                 </footer>
             </div>
         </div>

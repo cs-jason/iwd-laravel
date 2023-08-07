@@ -276,7 +276,12 @@ Extend the 'Layout' component and set the title as "Home"
 
         <script>
             // Notification script
-            let notificationStatus = {{ $notificationStatus }};
+            @auth
+                let notificationStatus = {{ $notificationStatus }};
+            @else
+                let notificationStatus = 1;
+            @endauth
+
             notificationStatus = !notificationStatus;
 
             function displayNotification() {
