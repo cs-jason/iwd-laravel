@@ -1,5 +1,7 @@
 Setup instructions
 
+*for windows users: (https://gist.github.com/hootlex/da59b91c628a6688ceb1)
+
 1. Download composer (https://getcomposer.org/download/)
 
     Enter into terminal:
