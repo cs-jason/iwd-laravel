@@ -51,7 +51,7 @@ Extend the 'Layout' component and set the title as "Certificate"
         </body>
     @else
     <script>
-        // Redirect to the 404 page for non-authenticated users
+        // Redirect to the 404 page for non-authenticated users and non-completed users
         // if (!@json(Auth::check())) {
             window.location.href = '/404';
         // }
