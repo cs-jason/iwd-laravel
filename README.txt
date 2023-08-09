@@ -23,3 +23,10 @@ Setup instructions
 7. Run $ php artisan db:seed
 
 8. Run $ php artisan serve
+
+
+Frontend code for the website is in "resources/views"
+Backend code is in
+
+routes: "routes/web.php"
+functions: "app/Http/Controllers"
